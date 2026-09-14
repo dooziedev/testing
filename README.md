@@ -6,7 +6,7 @@ flowchart TD
     NLP --> Sentiment[Sentiment Score]
 
     %% Dynamic Parameters
-    subgraph Dynamic Variables
+    subgraph DynamicVars [Dynamic Variables]
         Context[Max Context Size]
         Params[Model Parameter Scale]
         OutputLimit[Target Output Size]
@@ -14,10 +14,10 @@ flowchart TD
 
     %% Routing
     Intent & Sentiment --> Controller{Dynamic Resource Controller}
-    Dynamic Variables -.-> Controller
+    DynamicVars -.-> Controller
 
     %% Simulated Cognitive Core
-    subgraph Simulated Cognitive Core
+    subgraph SimCore [Simulated Cognitive Core]
         
         %% Context Management
         Controller --> CM[Context Manager & Working Memory]
@@ -36,11 +36,11 @@ flowchart TD
         SSM -.->|Identity Constraints| CM
 
         %% Memory
-        subgraph Tiered Memory
+        subgraph TieredMem [Tiered Memory]
             Episodic[(Episodic Memory)]
             Semantic[(Semantic Memory)]
         end
-        CM <--> Tiered Memory
+        CM <--> TieredMem
     end
 
     %% Response Generation
