@@ -1,26 +1,4 @@
-flowchart LR
-    discord([Discord]) -->|msgs| bot[[Bot client]]
-    bot -->|replies| discord
-    bot -->|context request| context[[Context builder]]
-    personality(Personality) -->|persona| context
-    mood(Mood) -->|mood state| context
-    memory[(Memory)] -->|recall| context
-    context -->|prompt| bot
-    bot -->|chat| llm[(LLM provider)]
-    llm -->|response| bot
-    bot -->|candidate| guard[[Delivery guard]]
-    guard -->|send / regen| bot
-    bot -->|log| memory
-    bot -->|sentiment| mood
-    autonomy(Autonomy) -->|proactive| discord
-    autonomy -->|reflection| personality
-    autonomy -->|goal mining| memory
-    memory -->|persist| sqlite[(SQLite)]
-    personality -->|snapshots| sqlite
-    mood -->|mood_log| sqlite
-    dashboard([Dashboard]) -->|start/stop + control| bot
-
-
+```mermaid
 flowchart TD
     %% User Input
     User([User Chat Input]) --> NLP[NLP & Sentiment Analysis]
@@ -80,3 +58,4 @@ flowchart TD
     %% Adaptation Loop
     Final --> Loop[Learning & Adaptation Loop]
     Loop --> Episodic
+```
